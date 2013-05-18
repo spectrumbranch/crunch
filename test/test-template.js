@@ -1,4 +1,5 @@
 //TODO: Rename to satisfy pattern theobject-test.js
+/*
 var assert = require('assert');
  
 describe('TheObject', function() {
@@ -8,3 +9,4 @@ describe('TheObject', function() {
 		});
 	});
 });
+*/
