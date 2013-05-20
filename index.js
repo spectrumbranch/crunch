@@ -1,6 +1,13 @@
 var crunch = require('./lib');
-
-console.log("");
+var async = require('async');
+//TODO: async this properly
+;
 //initialize system
-crunch.bootstrap();
+console.log("Bootstrapping system setup.")
+crunch.bootstrap(function() {
+	console.log("System bootstrap complete.");
+});
 
+//console.log("System entering lobby mode.");
+//wait for at least 2 players to connect
+//TODO; crunch.lobby();
