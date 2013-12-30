@@ -14,6 +14,7 @@ To obtain and install, run:
 
 ```
 git clone git@github.com:spectrumbranch/crunch.git
+cd crunch
 npm install
 ```
 
@@ -30,7 +31,8 @@ Early Phase Requirements
 -Specify a channel with configuration for crunch to sub/pub to on redis. This gives the channel namespace a prefix of `crunch:channelname:`
 
 -Messages are expected to be sent in valid parseable JSON. Both direct (value filled) and deferred (provides a 'memory address'-like redis key for another message) messages are understood.
-Example messages (aka command sets):
+
+__Example messages (aka command sets):__
 
 A direct message:  
 ```{"cmd":"update", "type":"Tile", "x":0, "y": 16, "layer": 1, "tileid": 17, "mapid": 3, "lastChangedBy": 7 }```
