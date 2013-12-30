@@ -6,20 +6,34 @@ This project is in an infant stage. We'll call it 0.0.0 until it at least does s
 
 [![Build Status](https://api.travis-ci.org/spectrumbranch/crunch.png)](https://travis-ci.org/spectrumbranch/crunch)
 
-Install
-=======
 
-To install, run: 
+Developers
+==========
 
-```
-npm install crunch
-```
-
-Usage
-=====
-
-To run, 
+To obtain and install, run: 
 
 ```
-node ./node_modules/crunch
+git clone git@github.com:spectrumbranch/crunch.git
+npm install
 ```
+
+To run tests:
+
+```
+make test
+```
+
+
+Early Phase Requirements
+------------------------
+
+-Specify a channel with configuration for crunch to sub/pub to on redis. This gives the channel namespace a prefix of `crunch:channelname:`
+
+-Messages are expected to be sent in valid parseable JSON. Both direct (value filled) and deferred (provides a 'memory address'-like redis key for another message) messages are understood.
+Example messages (aka command sets):
+
+A direct message:  
+```{"cmd":"update", "type":"Tile", "x":0, "y": 16, "layer": 1, "tileid": 17, "mapid": 3, "lastChangedBy": 7 }```
+
+A deferred message:  
+```{"cmd":"queue", "key":"tileQueue01234"}```
