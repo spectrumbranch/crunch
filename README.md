@@ -1,7 +1,7 @@
 crunch
 ======
 
-v0.1.0
+v0.1.1
 
 A queue crunching state machine.
 This project is still pretty young.
