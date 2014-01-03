@@ -9,7 +9,6 @@ describe('Crunch', function() {
 		it('should run hooks when they are provided.', function(done) {
 			var channel = 'testingCrunchHooks';
 			var expectedMessage = 'expectedMessage';
-			var messageHappened = false;
 			var hooks = {};
 			hooks.subscribe = function () {
 				console.log('hook subscribed');
@@ -19,15 +18,16 @@ describe('Crunch', function() {
 				console.log('hook unsubscribed');
 			};
 			hooks.message = function (message) {
-				console.log('%%%%%%%%%%%');
 				assert(message === expectedMessage);
-				messageHappened = true;
-				testClient.stop();
+				testClient.end();
+				crunch.stop();
+				assert(!crunch.started);
 				done();
 			};
 			
 			var crunch = Crunch.createInstance({ channel: channel, hooks: hooks });
 			crunch.start();
+			assert(crunch.started);
 			
 			var testClient = redis.createClient();
 			
