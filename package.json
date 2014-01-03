@@ -1,6 +1,6 @@
 {
   "name": "crunch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A queue crunching router / relay / state machine.",
   "main": "index.js",
   "scripts": {
