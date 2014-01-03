@@ -61,10 +61,10 @@ crunch.start();
 crunch.stop();
 ```
 
-Early Phase Requirements
+Early Phase Requirements (TODO)
 ------------------------
 
--Specify a channel with configuration for crunch to sub/pub to on redis. This gives the channel namespace a prefix of `crunch:channelname:`
+-Specify a channel with configuration for crunch to sub/pub to on redis.
 
 -Messages are expected to be sent in valid parseable JSON. Both direct (value filled) and deferred (provides a 'memory address'-like redis key for another message) messages are understood.
 
