@@ -1,8 +1,11 @@
 crunch
 ======
 
+v0.1.0
+
 A queue crunching state machine.
-This project is in an infant stage. We'll call it 0.0.0 until it at least does something.
+This project is still pretty young.
+
 
 [![Build Status](https://api.travis-ci.org/spectrumbranch/crunch.png)](https://travis-ci.org/spectrumbranch/crunch)
 
@@ -24,6 +27,39 @@ To run tests:
 make test
 ```
 
+Usage
+-----
+
+To use crunch as a subscriber router/relay:
+
+```
+var Crunch = require('crunch');
+
+var relay = {};
+
+//These relay functions are where you put your custom logic.
+relay.subscribe = function () {
+	console.log('Will show when subscribed.');
+}
+
+relay.unsubscribe = function () {
+	console.log('Will show when unsubscribing.');
+}
+
+relay.message = function (message) {
+	console.log('The message sent on this channel is ' + message);
+}
+var crunch = Crunch.createInstance({ channel: 'myChannel', hooks: relay });
+
+//Start listening
+crunch.start();
+
+//Use a redis client to publish some messages to the 'myChannel' channel.
+//Do some work
+
+//To end the process
+crunch.stop();
+```
 
 Early Phase Requirements
 ------------------------

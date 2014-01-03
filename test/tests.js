@@ -5,19 +5,19 @@ var async = require('async');
 
 describe('Crunch', function() {
 
-	describe('#Crunch Hooks()', function() {
-		it('should run hooks when they are provided.', function(done) {
-			var channel = 'testingCrunchHooks';
-			var expectedMessage = 'expectedMessage';
-			var hooks = {};
-			hooks.subscribe = function () {
-				console.log('hook subscribed');
+	describe('#Crunch Relay functions', function() {
+		it('should run relay functions when they are provided.', function(done) {
+			var channel = 'testingCrunchRelay';
+			var expectedMessage = 'expectedRelayedMessage';
+			var relay = {};
+			relay.subscribe = function () {
+				//console.log('hook subscribed');
 			};
 			
-			hooks.unsubscribe = function () {
-				console.log('hook unsubscribed');
+			relay.unsubscribe = function () {
+				//console.log('hook unsubscribed');
 			};
-			hooks.message = function (message) {
+			relay.message = function (message) {
 				assert(message === expectedMessage);
 				testClient.end();
 				crunch.stop();
@@ -25,7 +25,7 @@ describe('Crunch', function() {
 				done();
 			};
 			
-			var crunch = Crunch.createInstance({ channel: channel, hooks: hooks });
+			var crunch = Crunch.createInstance({ channel: channel, relay: relay });
 			crunch.start();
 			assert(crunch.started);
 			
