@@ -3,7 +3,7 @@ crunch
 
 v0.1.2
 
-A queue crunching router / relay.
+A queue crunching router / relay.  
 This project is still pretty young.
 
 
