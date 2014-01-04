@@ -1,9 +1,9 @@
 crunch
 ======
 
-v0.1.1
+v0.1.2
 
-A queue crunching state machine.
+A queue crunching router / relay.
 This project is still pretty young.
 
 
@@ -43,7 +43,7 @@ relay.subscribe = function () {
 }
 
 relay.unsubscribe = function () {
-	console.log('Will show when unsubscribing.');
+	console.log('Will show when unsubscribed.');
 }
 
 relay.message = function (message) {
@@ -55,7 +55,7 @@ var crunch = Crunch.createInstance({ channel: 'myChannel', hooks: relay });
 crunch.start();
 
 //Use a redis client to publish some messages to the 'myChannel' channel.
-//Do some work
+//The relay.message function will be passed the message.
 
 //To end the process
 crunch.stop();
@@ -75,3 +75,5 @@ A direct message:
 
 A deferred message:  
 ```{"cmd":"queue", "key":"tileQueue01234"}```
+
+If a router is passed into crunch's config, the router will pass all messages with `"cmd":"somename"` to the named router function "somename". If no router function has that name, the message is simply ignored. This allows a sort of plugin architecture on a single channel if the developer wishes to have one channel shared across multiple subscribers, each having their own job to do.
